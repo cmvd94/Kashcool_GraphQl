@@ -1,0 +1,16 @@
+ if (!req.user?.region || !req.user?.grade) {
+    return res.status(400).json({
+      message: "Region and Grade must be selected before adding lessons",
+    });
+  }
+const { region, grade } = req.user;
+
+const unit = await Unit.findById(unitId);
+    if (!unit) {
+      return res.status(404).json({ message: "Unit not found" });
+    }
+
+    const sub = await Subject.findById(unit.subjectId)
+    if (!sub) {
+      return res.status(404).json({ message: "subject not found" });
+    }

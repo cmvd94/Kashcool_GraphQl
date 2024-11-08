@@ -1,0 +1,35 @@
+1. Create User Page
+    => In create user page region is fetch from graphql - allRegions
+       src/graphql/resolvers/user/userQueryResolver.ts
+      {
+        allRegions {
+            _id
+            regionName
+            grades {
+            gradeId
+            gradeName
+            sem {
+                semesterName
+            }
+            }
+        }
+      }
+    => Now create/Register User - graphql
+       src/graphql/resolvers/user/userMutationResolver.ts
+       mutation {
+        registerUser( input: {
+            name: "vishnudas",
+            email: "cmvd94@gmail.com",
+            password: "password",
+            confirmPassword: "password",
+            phone: "+919791253796",
+            gender: "male",
+            region: "Saudi",
+            dateOfBirth: "1994-09-26"
+        }) {
+            message
+            otpKey
+        }
+       }
+    => verify OTP
+
